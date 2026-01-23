@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <!-- NOTE - the reason for use https://unpkg.com is control version -->
+    <script src="https://unpkg.com/supersimpledev@3.2.1/external-library.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function ChatInput() {
+        return (
+          <>
+            <input placeholder="Send a message to chatbot" size="30" />
+            <button>Send</button>
+          </>
+        )
+      }
+
+      function ChatMessage({ message, sender }) {
+        // if (sender === 'robot') {
+        //   return (
+        //     <div>
+        //       <img src="robot.png" width="50"/>
+        //       { message }
+        //     </div>
+        //   )
+        // }
+
+        return (
+          <div>
+            { sender === 'robot' && (
+              <img src="robot.png" width="50" />
+            ) }
+            { message }
+            { sender === 'robot' && (
+              <img src="user.png" width="50" />
+            ) }
+          </div>
+        )
+      }
+
+      const app = (
+        <>
+          <ChatInput />
+          <ChatMessage 
+            message="hello chatbot" 
+            sender="user" 
+          />
+          <ChatMessage 
+            message="Hello! How can I help you?" 
+            sender="robot" 
+          />
+          <ChatMessage 
+            message="can you give todays date?" 
+            sender="user" 
+          />
+          <ChatMessage 
+            message="Today is January 22"
+            sender="robot" 
+          />
+          <ChatMessage 
+            message="how about flip coin?" 
+            sender="user" 
+          />
+          <ChatMessage 
+            message="Sure! You got tails"
+            sender="robot" 
+          />
+        </>
+      );
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(app);
+    </script>
+  </body>
+</html>
